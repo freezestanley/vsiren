@@ -14,6 +14,10 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+const privateLibraries = [
+  resolve('node_modules/vformer') // form表单组件
+]
+
 let webpackConfig = {
   entry: entry.entry,
   // {
@@ -48,13 +52,19 @@ let webpackConfig = {
         test: /\.vue$/,
         loader: 'vue-loader',
         // loader: 'happypack/loader?id=vue',
+        include: [resolve('src'), ...privateLibraries],
         options: vueLoaderConfig
       },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         // loader: 'happypack/loader?id=js',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test'), ...privateLibraries]
+      },
+      {
+        test: /\.(less|css)$/,
+        loader: 'style-loader!css-loader!less-loader',
+        include: [resolve('src'), ...privateLibraries]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
