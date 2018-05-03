@@ -102,12 +102,12 @@
 <style lang='less' scoped>
   @import '../assets/styles/variable.less';
   .container {
-    padding:0 .5rem;
-    font-size: 1.2rem;
+    padding:5px;
+    font-size: 12px;
     button {
-      padding: .5rem;
+      padding: 5px;
       text-align:center;
-      width:88%;
+      width:50px;
       display:block;
       box-sizing: border-box;
       border: 1px solid yellowgreen;
