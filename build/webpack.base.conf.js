@@ -3,7 +3,7 @@ const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
-const vuxLoader = require('vux-loader')
+// const vuxLoader = require('vux-loader')
 const entry = require('../config/entry')
 const argv = require('yargs').argv
 
@@ -39,15 +39,15 @@ let webpackConfig = {
   },
   module: {
     rules: [
-      {
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
-        options: {
-          formatter: require('eslint-friendly-formatter')
-        }
-      },
+      // {
+      //   test: /\.(js|vue)$/,
+      //   loader: 'eslint-loader',
+      //   enforce: 'pre',
+      //   include: [resolve('src'), resolve('test')],
+      //   options: {
+      //     formatter: require('eslint-friendly-formatter')
+      //   }
+      // },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -110,17 +110,17 @@ let webpackConfig = {
   ]
 }
 
-
-module.exports = vuxLoader.merge(webpackConfig, {
-  options: {
-    showVuxVersionInfo: false
-  },
-  plugins: [
-    {
-      name: 'vux-ui'
-    },
-    {
-      name: 'duplicate-style'
-    }
-  ]
-})
+module.exports = webpackConfig
+// module.exports = vuxLoader.merge(webpackConfig, {
+//   options: {
+//     showVuxVersionInfo: false
+//   },
+//   plugins: [
+//     {
+//       name: 'vux-ui'
+//     },
+//     {
+//       name: 'duplicate-style'
+//     }
+//   ]
+// })

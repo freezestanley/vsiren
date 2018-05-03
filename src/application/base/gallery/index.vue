@@ -82,8 +82,8 @@ export default{
   }
 }
 </script>
-<style lang='scss' rel="stylesheet/scss" scoped>
-  @import '~@/assets/scss/function';
+<style lang='less' scoped>
+  @import '../../../assets/styles/variable.less';
   .page-gallery {
     width: 100%;
     padding: 0px;

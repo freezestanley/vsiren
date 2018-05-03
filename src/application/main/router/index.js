@@ -1,7 +1,6 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/Hello'
 
 Vue.use(Router)
 
@@ -25,6 +24,26 @@ export default new Router({
       },
       Info: {
         description: '画布',
+        param: {}
+      }
+    },
+    {
+      path: '/demo',
+      name: 'demo',
+      components: {
+        default: resolve => require(['@/demo/vformer'], resolve)
+      },
+      meta: {
+        requireAuth: true,
+        title: '',
+        rightMenu: null,
+        leftMenu: {
+          title: '返回',
+          javascript: 'gobackbtn'
+        }
+      },
+      Info: {
+        description: 'demo',
         param: {}
       }
     }

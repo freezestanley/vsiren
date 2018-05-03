@@ -53,7 +53,7 @@ app.use(hotMiddleware)
 Object.keys(proxyTable).forEach(function (context) {
   let options = proxyTable[context]
   if (typeof options === 'string') {
-    options = { 
+    options = {
       target: options
     }
   }
@@ -97,9 +97,19 @@ devMiddleware.waitUntilValid(() => {
       opn(uri)
     }
     server = app.listen(port)
+    showWarnings();
     _resolve()
   })
 })
+
+// 规划相关
+// TODO: 做一个单独路由，用来放项目规范
+function showWarnings () {
+  console.warn('样式书写规范：')
+  console.log('.vue文件内只写本组件样式相关，公共样式统一放在/assets/styles');
+  console.log('样式相关，如边框、颜色、字号，统一放在 /assets/styles/variable.less');
+  console.log('其它公共样式统一存放 /assets/styles/page.less');
+}
 
 module.exports = {
   ready: readyPromise,

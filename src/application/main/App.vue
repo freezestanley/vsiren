@@ -11,11 +11,3 @@ export default {
 }
 </script>
 
-<style>
-#app {
-font-family: SourceSansPro-Bold, 'Avenir', Helvetica, Arial, sans-serif, PingFangSC-Regular;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-}
-</style>
-
