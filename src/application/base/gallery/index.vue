@@ -6,7 +6,7 @@ gallery用于在开发中汇总单个页面列表
     <details open>
       <summary>Main Link</summary>
       <ol>
-        <li v-for="item in mainRouter.options.routes" key="item.link">
+        <li v-for="item in mainRouter.options.routes">
           <router-link :to="{path:item.path, saveScrollPosition: true}" tag="div">
             <div v-if="item.Info">
               <p>{{item.Info.description}}</p>
@@ -33,20 +33,7 @@ gallery用于在开发中汇总单个页面列表
 </template>
 
 <script>
-import Vue from 'vue'
 import mainRouter from '../../main/router/index'
-
-let a1 = {
-  template: `<div>sdasdfsf</div>`
-}
-var Comp = Vue.extend({
-  props: ['msg'],
-  template: '<div>{{ msg }}<a1></a1></div>',
-  components: {
-    a1
-  }
-})
-
 export default{
   name: 'Gallery',
   data () {
@@ -73,7 +60,6 @@ export default{
       mainRouter: mainRouter
     }
   },
-  components: {Comp},
   created () {
     this.cookies = document.cookie
     console.log(this.mainRouter)

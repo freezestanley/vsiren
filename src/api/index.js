@@ -1,7 +1,7 @@
 let root = ''
-const pro = process.env.NODE_ENV === 'production'
-const mock = process.env.MOCK
-if (pro) {
+export const isPro = process.env.NODE_ENV === 'production'
+export const mock = process.env.MOCK
+if (isPro) {
   root = '/api'
 } else {
   // root = '/testapi'
@@ -9,7 +9,7 @@ if (pro) {
 }
 let path = (inf = null, n) => {
   let result = ''
-  if (pro) {
+  if (isPro) {
     result = root + inf
   } else {
     switch (mock) {

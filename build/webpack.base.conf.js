@@ -9,14 +9,22 @@ const argv = require('yargs').argv
 
 const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
-
+const isPro = process.env.NODE_ENV === 'production';
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+// 私有库
 const privateLibraries = [
   resolve('node_modules/vformer') // form表单组件
 ]
+
+// 如果是开发环境，由装载demo
+if (!isPro) {
+  privateLibraries.push(
+    resolve('demo') // demo
+  )
+}
 
 let webpackConfig = {
   entry: entry.entry,
@@ -26,9 +34,7 @@ let webpackConfig = {
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
-    publicPath: process.env.NODE_ENV === 'production'
-      ? config.build.assetsPublicPath
-      : config.dev.assetsPublicPath
+    publicPath: isPro ? config.build.assetsPublicPath : config.dev.assetsPublicPath
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
