@@ -25,14 +25,14 @@
 
 <script>
   // 导入formUnit
-  import { formUnit } from 'vformer'
+  import { formUnit, zaInput, zaSelect } from 'vformer'
   // 导入配置文件
   import modelData from './formModel'
   // 导入自定义组件
   import testCust from './test-cust'
 
   export default {
-    name: 'test-unit',
+    name: 'form-unit-demo',
     data() {
       return {
         formModel: {},
@@ -126,7 +126,8 @@
     },
     components: {
       formUnit,
-      testCust
+      testCust,
+      zaInput, zaSelect
     }
   }
 </script>

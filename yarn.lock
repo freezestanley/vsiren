@@ -6380,9 +6380,9 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vformer@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/vformer/-/vformer-0.0.5.tgz#27298640501c49be086c4834b3c271648b360c9b"
+vformer@^0.0.7:
+  version "0.0.7"
+  resolved "http://registry.npm.taobao.org/vformer/download/vformer-0.0.7.tgz#ee6def59e2e7ed1117905e0819617aa87c928918"
   dependencies:
     array-filter "^1.0.0"
     array-find "^1.0.0"
