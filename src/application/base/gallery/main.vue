@@ -6,17 +6,14 @@ gallery用于在开发中汇总单个页面列表
     <details open>
       <summary>Main Link</summary>
       <ol>
-        <li v-for="item in mainRouter.options.routes">
+        <li v-for="item in mainRouter.options.routes" v-if="item.name !== 'gallary'" :class="{demo: item.name==='demo'}">
           <router-link :to="{path:item.path, saveScrollPosition: true}" tag="div">
             <div v-if="item.Info">
               <p>{{item.Info.description}}</p>
               <dl>
+                <dt v-if="item.Info.step">步骤：{{item.Info.step}}</dt>
                 <dt class="link">link:{{ item.path }}</dt>
-                <dt>name:{{item.name}}</dt>
-                <dt>param:</dt>
-                <dd v-for="(value, key) in item.Info.param">
-                  {{ key }} : {{ value }}
-                </dd>
+                <dt>name:{{item.name||item.children[0].name}}</dt>
               </dl>
             </div>
             <div v-else>
@@ -33,59 +30,12 @@ gallery用于在开发中汇总单个页面列表
 </template>
 
 <script>
-import mainRouter from '../../main/router'
-export const gallery_route = {
-  path: '/',
-  name: 'gallery',
-  components: {
-    default: resolve => require(['@/application/base/gallery'], resolve)
-  },
-  meta: {
-    requireAuth: true,
-    title: '',
-    rightMenu: null,
-    leftMenu: {
-      title: '返回',
-      javascript: 'gobackbtn',
-      params: 'go:recommend'
-    }
-  },
-  Info: {
-    description: '画布',
-    param: {}
-  }
-}
 export default{
   name: 'Gallery',
-  data () {
-    return {
-      cookies: '',
-      items: [
-        {
-          link: '/gallery',
-          descript: 'gallery用于在开发中汇总单个页面列表'
-        },
-        {
-          link: '/uigallery',
-          descript: 'baseUiGallery 基本 ui 组件汇总'
-        },
-        {
-          link: '/servicegallery',
-          descript: 'servicegallery 基本 业务 组件汇总'
-        }
-      ],
-      routers: [{
-        title: 'Main Link',
-        name: this.mainRouter
-      }],
-      mainRouter: mainRouter
+  computed: {
+    mainRouter () {
+      return this.$router
     }
-  },
-  created () {
-    this.cookies = document.cookie
-    console.log(this.mainRouter)
-  },
-  methods: {
   }
 }
 </script>
@@ -171,6 +121,9 @@ export default{
     & > div {
       clear: both;
       padding-left:5%;
+    }
+    .demo{
+      background: #cccccc
     }
   }
 </style>

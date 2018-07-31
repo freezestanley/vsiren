@@ -105,10 +105,15 @@ devMiddleware.waitUntilValid(() => {
 // 规划相关
 // TODO: 做一个单独路由，用来放项目规范
 function showWarnings () {
-  console.warn('样式书写规范：')
-  console.log('.vue文件内只写本组件样式相关，公共样式统一放在/assets/styles');
-  console.log('样式相关，如边框、颜色、字号，统一放在 /assets/styles/variable.less');
-  console.log('其它公共样式统一存放 /assets/styles/page.less');
+  console.warn('书写规范：');
+  console.log('***************************************************************');
+  console.log('- .vue文件内只写本组件样式相关，公共样式统一放在/assets/styles');
+  console.log('- 边框、颜色、字号，统一放在 /assets/styles/variable.less');
+  console.log('- 当前模块名_层功能-其它，比如 adduser-container-title');
+  console.log('- 文件命名和文件路由保持一致，同时也和文件夹保持一致');
+  console.log('- path:"/web/makeplan", name: "make-plan"');
+  console.log('- vue 文件的name一定要是用中线连接，如add-user');
+  console.log('***************************************************************');
 }
 
 module.exports = {

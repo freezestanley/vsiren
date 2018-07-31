@@ -95,10 +95,10 @@ module.exports = function (app) {
   // })
   app.use('/local', function (req, res, next){
     console.log('start local mock')
-    let path = filter(req, res)
-    path = './mock' + path + '.json'
-    console.log(path)
-    res.send(require(path))
+    const path = filter(req, res)
+    const newPath = './mock' + path + '.json'
+    console.log('proxying api:', path, 'to ', newPath)
+    res.send(require(newPath))
   })
   // snap 快照
   app.use('/cross', expressproxy(crosshost, {

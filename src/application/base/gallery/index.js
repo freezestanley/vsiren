@@ -2,11 +2,11 @@
 * @Author: jankergg
 * @Date:   2018-05-11 16:26:17
 * @Last Modified by:   jankergg
-* @Last Modified time: 2018-05-11 16:28:58
+* @Last Modified time: 2018-05-26 13:35:19
 */
 export default {
   path: '/',
-  name: 'gallery',
+  name: 'gallary',
   components: {
     default: resolve => require(['./main'], resolve)
   },
@@ -16,12 +16,12 @@ export default {
     rightMenu: null,
     leftMenu: {
       title: '返回',
-      javascript: 'gobackbtn',
-      params: 'go:recommend'
+      javascript: 'gobackbtn'
     }
   },
   Info: {
     description: '画布',
+    step: -1,
     param: {}
   }
 }

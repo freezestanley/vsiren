@@ -1,14 +1,14 @@
 /*
 * @Author: jankergg
-* @Date:   2018-05-11 16:23:29
+* @Date:   2018-05-11 16:26:17
 * @Last Modified by:   jankergg
-* @Last Modified time: 2018-05-11 16:24:07
+* @Last Modified time: 2018-05-26 13:35:19
 */
 export default {
   path: '/demo',
   name: 'demo',
   components: {
-    default: resolve => require(['./form-unit-demo'], resolve)
+    default: resolve => require(['./main'], resolve)
   },
   meta: {
     requireAuth: true,
@@ -20,7 +20,7 @@ export default {
     }
   },
   Info: {
-    description: 'demo',
+    description: '示例',
     param: {}
   }
 }
