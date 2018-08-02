@@ -9,6 +9,7 @@ var express = require('express')
 var log4js = require('./logger')
 var fs = require('fs')
 let port = require('../service/config').dev.port
+const bodyParser = require('body-parser')
 // var crosshost = '192.168.26.49:8080'
 var crosshost = '101.132.188.218:8080'
 //'192.168.26.49:8080'
@@ -65,6 +66,8 @@ module.exports = function (app) {
 
   app.use('/static', express.static(path.join(__dirname , '../dist/static')))
 
+  app.use(bodyParser.json())
+
   var allowCrossDomain = function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
@@ -96,9 +99,9 @@ module.exports = function (app) {
   app.use('/local', function (req, res, next){
     console.log('start local mock')
     const path = filter(req, res)
-    const newPath = './mock' + path + '.json'
+    const newPath = './mock/api' + path + '.js'
     console.log('proxying api:', path, 'to ', newPath)
-    res.send(require(newPath))
+    res.send(require(newPath)(req.body))
   })
   // snap 快照
   app.use('/cross', expressproxy(crosshost, {

@@ -27,7 +27,6 @@ Vue.config.devtools = true
 // 点击延迟
 // const FastClick = require('fastclick')
 // FastClick.attach(document.documentElement)
-
 Vue.use(vuexI18n.plugin, store)
 Vue.i18n.add('FAN', translationsFan)
 Vue.i18n.add('EN', translationsEn)

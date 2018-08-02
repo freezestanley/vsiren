@@ -44,8 +44,7 @@ export default {
   methods: {
     render () {
       console.log(ARTICLELIST)
-      window.axios = this.axios
-      this.axios.post(ARTICLELIST).then(res => {
+      this.axios.post(ARTICLELIST, {name: '1'}).then(res => {
         console.log(res)
       })
     }
@@ -63,7 +62,7 @@ main {
   padding: 10px;
 }
 .article-item {
-  border-bottom: 1px solid @color-d;
+  // border-bottom: 1px solid @color-d;
   .bd(#ddd);
   padding-top: 3%;
   padding-bottom: 5%;
@@ -74,7 +73,7 @@ main {
     display: flex;
     justify-content: space-between;
     p {
-      color: @color-a;
+      // color: @color-a;
       font-size: 12px;
     }
   }
@@ -84,10 +83,10 @@ main {
     h3 {
       font-size: 14px;
       font-weight: 500;
-      color: @color-6;
+      // color: @color-6;
     }
     p {
-      color: @color-a;
+      // color: @color-a;
       font-size: 12px;
       margin: 6px 0 10px 0;
     }
