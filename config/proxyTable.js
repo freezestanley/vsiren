@@ -11,7 +11,7 @@ module.exports = {
     secure: false,
     changeOrigin: true,
     pathRewrite: {
-      '^/devapi': '/'
+      '^/devapi': ''
     }
   },
   '/testapi/**': {

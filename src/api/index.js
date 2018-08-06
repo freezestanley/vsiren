@@ -41,5 +41,5 @@ example:
 export const ILOGIN = root + login
 */
 
-let demo = '/demo'
-export const IDEMO = path(demo, true)
+export const IDEMO = path('/demo', true)
+export const ARTICLELIST = path('/article/list', true)
