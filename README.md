@@ -1,6 +1,12 @@
 # vsiren-cli
 > A Vue.js project Multiple Entry
- 
+
+# 目录结构说明
+- 路由按目录划分，即每个页面对应一个文件夹，每个文件夹包含 index.js,
+  main.vue。具体请参考demo
+- 路由名称和文件夹保持一致(重要)
+- 全面弃用sass. sass对平台的一致性要求太高，node版本不一致或者`npm install` 都会导致node-sass需要重新编译。
+
 ## Build Setup
 
 ``` bash
@@ -23,7 +29,7 @@ npm run unit
 npm run e2e
 
 # run createEntry
-npm run createEntry target  
+npm run createEntry target
 
 # run mdev    run dev & mock
 npm run mdev
@@ -42,9 +48,9 @@ export const I_HEALTHINFORM = path(healthInform， true)
 
 true : local mock   mock data from service/mock
 
-false: origin mock  
+false: origin mock
 
-open snap  dir path = service/snap 
+open snap  dir path = service/snap
 
 server/server.js  config origin host
 

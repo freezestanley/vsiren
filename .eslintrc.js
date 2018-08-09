@@ -57,9 +57,9 @@ module.exports = {
        return 'Hello!';
        }
        };
-  
+
        等同于
-  
+
        var o = {
        method: function() {
        return 'Hello!';
@@ -72,7 +72,7 @@ module.exports = {
        var foo = 'bar';
        var baz = {foo};
        baz // {foo: 'bar'}
-  
+
        // 等同于
        var baz = {foo: foo};
        */
