@@ -52,9 +52,9 @@
   </div>
 </template>
 <script>
-import Draw from './components/draw'
-import signtxt from './components/signtxt'
-
+import Draw from './draw'
+import signtxt from './signtxt'
+import Zip from './zip'
 export default {
   data () {
     return {
@@ -121,7 +121,7 @@ export default {
         alert('请签字')
         return
       }
-      if (this.txt_idx == (this.txt.length - 1)) return
+      if (this.txt_idx == this.txt.length) return
       this.txt_idx = this.txt_idx >= (this.txt.length - 1) ? this.txt_idx : this.txt_idx + 1
       var data = this.canvas.save()
       this.signed.push(data)
@@ -130,8 +130,7 @@ export default {
     submit () {
       this.txt_idx = 0
       var result = Draw.createMap(this.drawW, this.drawH, this.wordWrap, this.signed)
-      // this.asrc = result
-      this.$emit('submit', result)
+      this.asrc = result
     },
     back () {
       this.$emit('cancel')
@@ -141,8 +140,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../../assets/styles/variable';
-@import '../../../assets/styles/fn';
 .sign {
   background:#dce0e4;
   // position: absolute;
@@ -235,6 +232,8 @@ export default {
           position: relative;
           background: #eee;
           border: 1px solid #ccc;
+          background: url(data:image/png;base64,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) no-repeat;
+          background-size: 100%;
           &:after{
             content: attr(alt);
             position: absolute;

@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import Sign from './sign'
+import Sign from './signture'
 export default {
   name: 'main',
   data () {

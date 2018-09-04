@@ -110,6 +110,6 @@ export default class Draw {
         }
       }
     }
-    return cvs.toDataURL("image/jpeg")
+    return cvs.toDataURL("image/jpeg", 0.4)
   }
 }
