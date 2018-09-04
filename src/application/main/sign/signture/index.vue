@@ -29,7 +29,7 @@
           :key='index'>
         </div>
       </div>
-      <div class="sign_listDele"  @click="remove">X</div>
+      <div class="sign_listDele"  @click="remove"><i class="iconfont icon-arrow_left"></i></div>
     </div>
     <div class="sign_drawCanvas">
       <div class="sign_drawTable">
@@ -40,8 +40,8 @@
           <div class="sign_drawtips">请在此签名</div>
         </div>
         <div class="sign_drawMenu">
-          <div @click="clear" class="sign_drawMenuClear">重写</div>
-          <div @click="decide" class="sign_drawMenuOk">确定</div>
+          <div @click="clear" class="sign_drawMenuClear" placeholder="重写"><i class="iconfont icon-text"></i></div>
+          <div @click="decide" class="sign_drawMenuOk"><i class="iconfont icon-yes"></i></div>
         </div>
       </div>
     </div>
@@ -188,10 +188,13 @@ export default {
       top: 0;
       right: 0;
       width: 70px;
-      background: #f00;
+      background: darkgray;
       color: #333;
       text-align: center;
-      border-radius: 3px;
+      border-radius: 18px;
+      i{
+        font-size: 20px;
+      }
     }
   }
   .sign_drawCanvas{
@@ -202,23 +205,30 @@ export default {
       .sign_drawMenu{
         display:table-cell;
         vertical-align: top;
-        padding-left: 10px;
+        padding-left: 15px;
         .sign_drawMenuOk{
-          background: #f00;
-          border-radius: 3px;
+          background: dodgerblue;
+          border-radius: 20px;
           border:1px solid transparent;
           color: #fff;
           display: block;
-          padding: 5px 15px;
+          padding: 2px 15px;
+          i{
+             font-size: 25px;
+          }
         }
         .sign_drawMenuClear{
-          background: #666;
-          border-radius: 3px;
+          background: red;
+          border-radius: 20px;
           color: #fff;
           display: block;
-          padding: 5px 15px;
+          padding: 2px 15px;
           border:1px solid transparent;
+          margin-top: 10px;
           margin-bottom: 15px;
+          i{
+            font-size: 25px;
+          }
         }
       }
       .sign_drawState{
@@ -237,15 +247,15 @@ export default {
           &:after{
             content: attr(alt);
             position: absolute;
-            font-size: 180px;
+            font-size: 90px;
             color: #ccc;
             width: 100%;
             height: 100%;
             line-height: 200px;
             vertical-align: middle;
             text-align: center;
-            top:0;
-            left:0;
+            top:-48px;
+            left:-3px;
             z-index: 1;
           }
           & > canvas{
@@ -261,17 +271,18 @@ export default {
   }
   .sign_Menu{
     display: table;
-    background:#333;
+    background:#eee;
+    width:100%;
     div{
       display: table-cell;
       text-align: center;
-      color:#fff;
+      color:#000;
       line-height: 40px;
       height: 40px;
     }
     &>div:last-child{
-      background: #eee;
-      color:#000;
+      background: dodgerblue;
+      color:#fff;
     }
   }
 }
