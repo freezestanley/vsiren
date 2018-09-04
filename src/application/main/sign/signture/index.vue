@@ -247,15 +247,15 @@ export default {
           &:after{
             content: attr(alt);
             position: absolute;
-            font-size: 90px;
+            font-size: 100pt;
             color: #ccc;
             width: 100%;
             height: 100%;
-            line-height: 200px;
+            line-height: 140pt;
             vertical-align: middle;
             text-align: center;
-            top:-30px;
-            left:-3px;
+            top:0px;
+            left:0px;
             z-index: 1;
           }
           & > canvas{
