@@ -254,7 +254,7 @@ export default {
             line-height: 200px;
             vertical-align: middle;
             text-align: center;
-            top:-48px;
+            top:-28px;
             left:-3px;
             z-index: 1;
           }
