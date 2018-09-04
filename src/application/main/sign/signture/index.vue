@@ -29,7 +29,7 @@
           :key='index'>
         </div>
       </div>
-      <div class="sign_listDele"  @click="remove"><i class="iconfont icon-arrow_left"></i></div>
+      <div class="sign_listDele"  @click="remove"><img src="./left-remove.png"></div>
     </div>
     <div class="sign_drawCanvas">
       <div class="sign_drawTable">
@@ -40,8 +40,8 @@
           <div class="sign_drawtips">请在此签名</div>
         </div>
         <div class="sign_drawMenu">
-          <div @click="clear" class="sign_drawMenuClear" placeholder="重写"><i class="iconfont icon-text"></i></div>
-          <div @click="decide" class="sign_drawMenuOk"><i class="iconfont icon-yes"></i></div>
+          <div @click="clear" class="sign_drawMenuClear"><img src="./rewrite.png"></div>
+          <div @click="decide" class="sign_drawMenuOk"><img src="./make-sure.png"></div>
         </div>
       </div>
     </div>
@@ -192,8 +192,9 @@ export default {
       color: #333;
       text-align: center;
       border-radius: 18px;
-      i{
-        font-size: 20px;
+      img{
+        width: 30px;
+        height: 20px;
       }
     }
   }
@@ -213,12 +214,13 @@ export default {
           color: #fff;
           display: block;
           padding: 2px 15px;
-          i{
-             font-size: 25px;
+          img{
+            width: 20px;
+            height: 20px;
           }
         }
         .sign_drawMenuClear{
-          background: red;
+          background: orangered;
           border-radius: 20px;
           color: #fff;
           display: block;
@@ -226,8 +228,9 @@ export default {
           border:1px solid transparent;
           margin-top: 10px;
           margin-bottom: 15px;
-          i{
-            font-size: 25px;
+          img{
+            width: 20px;
+            height: 20px;
           }
         }
       }
@@ -247,15 +250,15 @@ export default {
           &:after{
             content: attr(alt);
             position: absolute;
-            font-size: 90px;
+            font-size: 100pt;
             color: #ccc;
             width: 100%;
             height: 100%;
-            line-height: 200px;
+            line-height: 140pt;
             vertical-align: middle;
             text-align: center;
-            top:-30px;
-            left:-3px;
+            top:0px;
+            left:0px;
             z-index: 1;
           }
           & > canvas{
