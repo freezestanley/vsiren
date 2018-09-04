@@ -10,6 +10,9 @@ export default class Draw {
     this.canvas.width = width
     this.canvas.height = height
     this.cxt = this.canvas.getContext('2d')
+    this.cxt.lineCap = 'round'
+    this.cxt.shadowBlur = 5
+    this.cxt.lineWidth = 5
     this.haspen = haspen
     this.stage_info = this.canvas.getBoundingClientRect()
     this.path = {

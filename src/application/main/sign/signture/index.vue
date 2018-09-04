@@ -17,7 +17,7 @@
 -->
 <template>
   <div class="sign">
-    <!-- <img :src="asrc"/> -->
+    <img :src="asrc"/>
     <div class="sign_drawBox">
       <signtxt :txt = "txt" :idx = "txt_idx" :font.sync="font"/>
     </div>
@@ -89,7 +89,7 @@ export default {
     },
     wordWrap: {
       type: Number,
-      default: 10
+      default: 21
     },
     cancelTxt: {
       type: String,
