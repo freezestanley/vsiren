@@ -1,14 +1,19 @@
 <template>
   <div>
     <factory :record="list"/>
+    <test v-bind.sync="title"/>
   </div>
 </template>
 <script>
 import {ARTICLELIST} from '@/api'
 import factory from './components/factory'
+import test from './test'
 export default {
   data () {
     return {
+      title: {
+        name: '123123'
+      },
       list: [
         {
           id: "gender",
@@ -21,7 +26,14 @@ export default {
             show: false,
             vif: false
           },
-          event: ['history']
+          event: {
+            gender: {
+              e: 'gender',
+              callback: () => {
+                alert(this)
+              }
+            }
+          }
         },
         {
           id: "history",
@@ -34,7 +46,14 @@ export default {
             show: false,
             vif: false
           },
-          event: ['gender']
+          event: {
+            gender: {
+              e: 'gender',
+              callback: () => {
+                alert(this)
+              }
+            }
+          }
         },
         {
           id: "school",
@@ -47,7 +66,14 @@ export default {
             show: false,
             vif: false
           },
-          event: []
+          event: {
+            history: {
+              e: 'history',
+              callback: () => {
+                alert(this)
+              }
+            }
+          }
         }
       ]
     }
@@ -57,7 +83,7 @@ export default {
     }
   },
   components: {
-    factory
+    factory, test
   },
   created () {
     this.render()

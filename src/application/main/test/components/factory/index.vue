@@ -42,11 +42,19 @@ export default {
       task()
     },
     eventAdd (event) {
+      let eventData = this.event
       this.$children.map((ele, idx, arr) => {
-        ele.checkEvent(this.event)
+        let search = []
+        eventData.map((e, id, ar) => {
+          if (ele.event[e]) {
+            search.push(e)
+          }
+        })
+        if (search.length > 0) {
+          ele.addEventListener(search)
+        }
       })
       this.event = this.$set(this, 'event', [])
-      console.log(this.event)
     }
   },
   props: {

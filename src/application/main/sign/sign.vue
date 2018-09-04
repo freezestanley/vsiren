@@ -1,0 +1,279 @@
+<!--
+/*
+ * name: multiple word sign
+ * props: 
+ *   name      type     default    
+ *   txt      String     ''      传人被抄写文字  
+ *   drawW    Number     200     签字画布宽
+ *   drawH    Number     200     签字画布高
+ *  wordWrap  Number     10      签字后生成的图片当行文字数
+ *  cancelTxt String    返回      返回上一步按钮文字
+ *  submitTxt String    确定      签字完成后提交按钮文字
+ * event:
+ *   name       param
+ *  submit   imagebase64          签字完成后点击提交,将生成的图片base64传出
+ *  cancel                        点击返回上一步按钮,放弃签名
+ */
+-->
+<template>
+  <div class="sign">
+    <!-- <img :src="asrc"/> -->
+    <div class="sign_drawBox">
+      <signtxt :txt = "txt" :idx = "txt_idx" :font.sync="font"/>
+    </div>
+    <div class="sign_drawTxt">
+      <div class="sign_listBox">
+        <div class="sign_drawElement" 
+          v-for="(item, index) in signed"
+          :style="{backgroundImage: 'url(' + item.data + ')'}" 
+          :key='index'>
+        </div>
+      </div>
+      <div class="sign_listDele"  @click="remove">X</div>
+    </div>
+    <div class="sign_drawCanvas">
+      <div class="sign_drawTable">
+        <div class="sign_drawState">
+          <div class="sign_drawAtom" :alt="font">
+            <canvas id="canvas"/>
+          </div>
+          <div class="sign_drawtips">请在此签名</div>
+        </div>
+        <div class="sign_drawMenu">
+          <div @click="clear" class="sign_drawMenuClear">重写</div>
+          <div @click="decide" class="sign_drawMenuOk">确定</div>
+        </div>
+      </div>
+    </div>
+    <div class="sign_Menu">
+      <div @click="back">{{cancelTxt}}</div>
+      <div @click="submit">{{submitTxt}}</div>
+    </div>
+  </div>
+</template>
+<script>
+import Draw from './components/draw'
+import signtxt from './components/signtxt'
+
+export default {
+  data () {
+    return {
+      txt_idx: 0,
+      font: '',
+      signed: [],
+      havepen: false,
+      canvas: null,
+      asrc: null
+    }
+  },
+  name: "sign",
+  created () {
+    this.font = this.txt[this.txt_idx]
+  },
+  mounted () {
+    this.canvas = new Draw('canvas', this.drawW, this.drawH, this.haspan)
+    this.canvas.init()
+  },
+  props: {
+    txt: {
+      type: String,
+      default: ''
+    },
+    drawW: {
+      type: Number,
+      default: 200
+    },
+    drawH: {
+      type: Number,
+      default: 200
+    },
+    wordWrap: {
+      type: Number,
+      default: 10
+    },
+    cancelTxt: {
+      type: String,
+      default: '返回'
+    },
+    submitTxt: {
+      type: String,
+      default: '确定'
+    }
+  },
+  components: {
+    signtxt
+  },
+  methods: {
+    haspan: function (e) {
+      this.havepen = e
+    },
+    clear: function () {
+      this.havepen = false
+      this.canvas.clear()
+    },
+    remove: function () {
+      if (this.txt_idx <= 0) return
+      this.signed.pop()
+      this.txt_idx = this.txt_idx <= 0 ? 0 : this.txt_idx - 1
+    },
+    decide: function () {
+      if (!this.havepen) {
+        alert('请签字')
+        return
+      }
+      if (this.txt_idx == (this.txt.length - 1)) return
+      this.txt_idx = this.txt_idx >= (this.txt.length - 1) ? this.txt_idx : this.txt_idx + 1
+      var data = this.canvas.save()
+      this.signed.push(data)
+      this.clear()
+    },
+    submit () {
+      this.txt_idx = 0
+      var result = Draw.createMap(this.drawW, this.drawH, this.wordWrap, this.signed)
+      // this.asrc = result
+      this.$emit('submit', result)
+    },
+    back () {
+      this.$emit('cancel')
+    }
+  }
+}
+</script>
+
+<style lang="less" scoped>
+@import '../../../assets/styles/variable';
+@import '../../../assets/styles/fn';
+.sign {
+  background:#dce0e4;
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  // bottom: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .sign_drawBox{
+    flex: 0;
+    .sign_content{
+      margin: 10px;
+      & > span {
+        &.seled{
+          font-size: 18px;
+          color: #f00;
+        }
+        font-size: 16px;
+      }
+    }
+  }
+  .sign_drawTxt{
+    flex: 0;
+    margin: 10px;
+    position: relative;
+    .sign_listBox{
+      background: #efefef;
+      border-radius: 5px;
+      padding:3px;
+      min-height: 100px;
+      margin-right: 80px;
+      overflow: hidden;
+      overflow-y: auto;
+      height: 8rem;
+      .sign_drawElement{
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background-size: 100% 100%;
+      }
+    }
+    .sign_listDele{
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 70px;
+      background: #f00;
+      color: #333;
+      text-align: center;
+      border-radius: 3px;
+    }
+  }
+  .sign_drawCanvas{
+    flex: 1;
+    .sign_drawTable{
+      display:table;
+      margin: 10px;
+      .sign_drawMenu{
+        display:table-cell;
+        vertical-align: top;
+        padding-left: 10px;
+        .sign_drawMenuOk{
+          background: #f00;
+          border-radius: 3px;
+          border:1px solid transparent;
+          color: #fff;
+          display: block;
+          padding: 5px 15px;
+        }
+        .sign_drawMenuClear{
+          background: #666;
+          border-radius: 3px;
+          color: #fff;
+          display: block;
+          padding: 5px 15px;
+          border:1px solid transparent;
+          margin-bottom: 15px;
+        }
+      }
+      .sign_drawState{
+        display:table-cell;
+        vertical-align: top;
+        .sign_drawtips{
+          color: #333;
+          text-align: center;
+        }
+        .sign_drawAtom{
+          position: relative;
+          background: #eee;
+          border: 1px solid #ccc;
+          &:after{
+            content: attr(alt);
+            position: absolute;
+            font-size: 180px;
+            color: #ccc;
+            width: 100%;
+            height: 100%;
+            line-height: 200px;
+            vertical-align: middle;
+            text-align: center;
+            top:0;
+            left:0;
+            z-index: 1;
+          }
+          & > canvas{
+            margin: 0;
+            padding: 0;
+            display: block;
+            position: relative;
+            z-index: 10;
+          }
+        }
+      }
+    }
+  }
+  .sign_Menu{
+    display: table;
+    background:#333;
+    div{
+      display: table-cell;
+      text-align: center;
+      color:#fff;
+      line-height: 40px;
+      height: 40px;
+    }
+    &>div:last-child{
+      background: #eee;
+      color:#000;
+    }
+  }
+}
+</style>

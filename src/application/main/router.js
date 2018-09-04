@@ -13,6 +13,7 @@ import gallery from '../base/gallery'
 import demo from '../../../demo'
 import article from './article/router'
 import test from './test/router'
+import sign from './sign/router'
 // 页面模块 end
 
 // 所有页面
@@ -20,7 +21,8 @@ const ROUTEES = [
   gallery,
   demo,
   article,
-  test
+  test,
+  sign
 ]
 window.gg = gallery
 Vue.use(Router)

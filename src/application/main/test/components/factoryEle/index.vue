@@ -15,12 +15,16 @@ export default {
   props: ['id', 'type', 'attr', 'event', 'clickEvent'],
   methods: {
     changeHandler (obj) {
+      debugger
       console.log(obj)
       this.$props.clickEvent(obj.id)
     },
-    checkEvent (ev) {
-      debugger
-      console.log(ev)
+    addEventListener (ev) {
+      let event = this.event
+      ev.map((e, idx, arr) => {
+        debugger
+        event[e].callback()
+      })
     }
   },
   created: function () {}
