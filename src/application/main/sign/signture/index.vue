@@ -29,7 +29,7 @@
           :key='index'>
         </div>
       </div>
-      <div class="sign_listDele"  @click="remove"><img src="./left-remove.png"></div>
+      <div class="sign_listDele"  @click="remove"><img src="./arrow-left.png" class="arrow-left"></div>
     </div>
     <div class="sign_drawCanvas">
       <div class="sign_drawTable">
@@ -40,8 +40,8 @@
           <div class="sign_drawtips">请在此签名</div>
         </div>
         <div class="sign_drawMenu">
-          <div @click="clear" class="sign_drawMenuClear"><img src="./rewrite.png"></div>
-          <div @click="decide" class="sign_drawMenuOk"><img src="./make-sure.png"></div>
+          <div @click="clear" class="sign_drawMenuClear"><img src="./text.png" class="clear-text"></div>
+          <div @click="decide" class="sign_drawMenuOk"><img src="./yes.png" class="make-sure"></div>
         </div>
       </div>
     </div>
@@ -188,13 +188,14 @@ export default {
       top: 0;
       right: 0;
       width: 70px;
-      background: darkgray;
+      background: gray;
       color: #333;
       text-align: center;
       border-radius: 18px;
-      img{
+      .arrow-left{
         width: 30px;
         height: 20px;
+        margin-top: 2px;
       }
     }
   }
@@ -215,12 +216,12 @@ export default {
           display: block;
           padding: 2px 15px;
           img{
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
           }
         }
         .sign_drawMenuClear{
-          background: orangered;
+          background: #f00;
           border-radius: 20px;
           color: #fff;
           display: block;
@@ -229,8 +230,8 @@ export default {
           margin-top: 10px;
           margin-bottom: 15px;
           img{
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
           }
         }
       }
