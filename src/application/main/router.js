@@ -14,6 +14,9 @@ import demo from '../../../demo'
 import article from './article/router'
 import test from './test/router'
 import sign from './sign/router'
+import dialogTest from './vformTest/dialog/router'
+import formunit from './vformTest/formunit/router'
+// import checkList from './vformTest/checkList/router'
 // 页面模块 end
 
 // 所有页面
@@ -22,7 +25,10 @@ const ROUTEES = [
   demo,
   article,
   test,
-  sign
+  sign,
+  dialogTest,
+  formunit
+  // checkList
 ]
 window.gg = gallery
 Vue.use(Router)
